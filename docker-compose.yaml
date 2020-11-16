@@ -1,0 +1,51 @@
+version: '3'
+services:
+
+  app:
+    build:
+      context: ./
+      dockerfile: ./docker/app.dockerfile
+    working_dir: /var/www
+    volumes:
+      - "./:/var/www:delegated"
+    environment:
+      - "DB_PASSWORD=secret"
+      - "DB_PORT=3306"
+      - "DB_HOST=database"
+      - "REDIS_HOST=redis"
+
+  web:
+    build:
+      context: ./
+      dockerfile: ./docker/web.dockerfile
+    working_dir: /var/www
+    volumes:
+      - "./:/var/www:delegated"
+    ports:
+      - 8080:80
+    depends_on:
+      - app
+
+  database:
+    image: mysql:5.7
+    volumes:
+      - dbdata:/var/lib/mysql:delegated
+    environment:
+      - "MYSQL_DATABASE=questionapp"
+      - "MYSQL_USER=root"
+      - "MYSQL_PASSWORD=secret"
+      - "MYSQL_ROOT_PASSWORD=secret"
+    ports:
+      - "33064:3306"
+
+  redis:
+    image: redis:alpine
+    volumes:
+      - redisdata:/data:delegated
+    ports:
+      - "63790:6379"
+
+volumes:
+  dbdata:
+  redisdata:
+    driver: "local"

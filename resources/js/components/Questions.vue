@@ -1,30 +1,59 @@
 <template>
     <div>
-    <h1>Add Contact</h1>
-    <form action="#" @submit.prevent="edit ? updateContact(contact.id) : createContact()">
+    <h1 v-if="edit">Update Question</h1>
+    <h1 v-else>Add Question</h1>
+    <form action="#" @submit.prevent="edit ? updateQuestion(question.id) : createQuestion()">
         <div class="form-group">
-            <label>Name</label>
-            <input v-model="contact.name" type="text" name="name" class="form-control">
+            <label>Question</label>
+            <input v-model="question.question" type="text" name="question" class="form-control">
         </div>
         <div class="form-group">
-            <label>Email</label>
-            <input v-model="contact.email" type="text" name="email" class="form-control">
+            <label>Category</label>
+            <input v-model="question.categories" type="text" name="categories" class="form-control">
         </div>
         <div class="form-group">
-            <label>Phone</label>
-            <input v-model="contact.phone" type="text" name="phone" class="form-control">
+            <label>1st Choice</label>
+            <input v-model="question.choice_1" type="text" name="choice_1" class="form-control">
         </div>
         <div class="form-group">
-            <button v-show="!edit" type="submit" class="btn btn-primary">New Contact</button>
-            <button v-show="edit" type="submit" class="btn btn-primary">Update Contact</button>
+            <label>Correct Choice for Q1</label>
+            <input v-model="question.is_correct_choice_1" type="text" name="is_correct_choice_1" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>2nd Choice</label>
+            <input v-model="question.choice_2" type="text" name="choice_2" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Correct Choice for Q2</label>
+            <input v-model="question.is_correct_choice_2" type="text" name="is_correct_choice_2" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>3rd Choice</label>
+            <input v-model="question.choice_3" type="text" name="choice_3" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Correct Choice for Q3</label>
+            <input v-model="question.is_correct_choice_3" type="text" name="is_correct_choice_3" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>4th Choice</label>
+            <input v-model="question.choice_4" type="text" name="choice_4" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Correct Choice for Q4</label>
+            <input v-model="question.is_correct_choice_4" type="text" name="is_correct_choice_4" class="form-control">
+        </div>
+        <div class="form-group">
+            <button v-show="!edit" type="submit" class="btn btn-primary">New Question</button>
+            <button v-show="edit" type="submit" class="btn btn-primary">Update Question</button>
         </div>
     </form>
-    <h1>Contacts</h1>
-    <ul class="list-group">
-        <li v-for="contact in list" class="list-group-item" v-bind:key="contact.id">
-            <strong>{{contact.name}}</strong> {{contact.email}} {{contact.phone}}
-            <button @click="showContact(contact.id)" class="btn btn-default btn-xs">Edit</button>
-            <button @click="deleteContact(contact.id)" class="btn btn-danger btn-xs">Delete</button>
+    <h1>Questions</h1>
+    <ul class="list-group" v-for="question in list" v-bind:key="question.id">
+        <li class="list-group-item">
+            <strong>{{question.question}}</strong> {{question.categories}}
+            <button @click="showQuestion(question.id)" class="btn btn-default btn-xs">Edit</button>
+            <button @click="deleteQuestion(question.id)" class="btn btn-danger btn-xs">Delete</button>
         </li>
     </ul>
     </div>
@@ -36,76 +65,106 @@
             return {
                 edit:false,
                 list:[],
-                contact:{
-                    id:'',
-                    name:'',
-                    email:'',
-                    phone:''
+                question:{
+                    question:'',
+                    categories:'',
+                    choice_1:'',
+                    is_correct_choice_1:'',
+                    choice_2:'',
+                    is_correct_choice_2:'',
+                    choice_3:'',
+                    is_correct_choice_3:'',
+                    choice_4:'',
+                    is_correct_choice_4:''
                 }
             }
         },
         mounted: function(){
-            console.log('Contacts Component Loaded...');
-            this.fetchContactList();
+            console.log('Questions Component Loaded...');
+            this.fetchQuestionList();
         },
         methods: {
-            fetchContactList:function(){
-                console.log('Fetching contacts...');
-                axios.get('api/contacts')
+            fetchQuestionList:function(){
+                console.log('Fetching questions...');
+                axios.get('api/questions')
                     .then((response) => {
-                        console.log(response.data);
-                        this.list = response.data;
+                        console.log(response.data.questions);
+                        this.list = response.data.questions;
                     }).catch((error) => {
                         console.log(error);
                 });
             },
-            createContact: function(){
-                console.log('creating contact...');
+            createQuestion: function(){
+                console.log('creating question...');
                 let self =  this;
-                let params = Object.assign({}, self.contact)
-                axios.post('api/contact/store', params)
+                let params = Object.assign({}, self.question)
+                axios.post('api/store', params)
                     .then(function(){
-                        self.contact.name = '';
-                        self.contact.email = '';
-                        self.contact.phone = '';
+                        self.question.question = '';
+                        self.question.categories = '';
+                        self.question.choice_1 = '';
+                        self.question.is_correct_choice_1 = '';
+                        self.question.choice_2 = '';
+                        self.question.is_correct_choice_2 = '';
+                        self.question.choice_3 = '';
+                        self.question.is_correct_choice_3 = '';
+                        self.question.choice_4 = '';
+                        self.question.is_correct_choice_4 = '';
                         self.edit = false;
-                        self.fetchContactList();
+                        self.fetchQuestionList();
+                        toastr.success('Question created.', 'Success!')
                     })
                     .catch(function(error) {
                         console.log(error);
                     });
             },
-            showContact: function(id){
+            showQuestion: function(id){
                 let self = this;
-                axios.get('api/contact/'+id)
+                axios.get('api/show/'+id)
                     .then(function(response){
-                        self.contact.id = response.data.id;
-                        self.contact.name = response.data.name;
-                        self.contact.email = response.data.email;
-                        self.contact.phone = response.data.phone;
+                        console.log(response.data.question);
+                        self.question.id = response.data.question.id;
+                        self.question.question = response.data.question.question;
+                        self.question.categories = response.data.question.categories;
+                        self.question.choice_1 = response.data.question.choice_1;
+                        self.question.is_correct_choice_1 = response.data.question.is_correct_choice_1;
+                        self.question.choice_2 = response.data.question.choice_2;
+                        self.question.is_correct_choice_2 = response.data.question.is_correct_choice_2;
+                        self.question.choice_3 = response.data.question.choice_3;
+                        self.question.is_correct_choice_3 = response.data.question.is_correct_choice_3;
+                        self.question.choice_4 = response.data.question.choice_4;
+                        self.question.is_correct_choice_4 = response.data.question.is_correct_choice_4;
                     })
                     self.edit = true;
             },
-            updateContact: function(id){
-                console.log('updating contact '+id+'...');
+            updateQuestion: function(id){
+                console.log('updating question '+id+'...');
                 let self = this;
-                let params = Object.assign({}, self.contact);
-                axios.patch('api/contact/'+id, params)
+                let params = Object.assign({}, self.question);
+                axios.patch('api/update/'+id, params)
                     .then(function(){
-                        self.contact.name = '';
-                        self.contact.email = '';
-                        self.contact.phone = '';
+                        self.question.question = '';
+                        self.question.categories = '';
+                        self.question.choice_1 = '';
+                        self.question.is_correct_choice_1 = '';
+                        self.question.choice_2 = '';
+                        self.question.is_correct_choice_2 = '';
+                        self.question.choice_3 = '';
+                        self.question.is_correct_choice_3 = '';
+                        self.question.choice_4 = '';
+                        self.question.is_correct_choice_4 = '';
                         self.edit = false;
-                        self.fetchContactList();
+                        self.fetchQuestionList();
                     })
                     .catch(function(error) {
                         console.log(error);
                     });
             },
-            deleteContact: function(id){
-                axios.delete('api/contact/'+id)
+            deleteQuestion: function(id){
+                axios.delete('api/delete/'+id)
                     .then(function(response){
-                        self.fetchContactList();
+                        // windows.location - refresh
+                        self.fetchQuestionList();
                     })
                     .catch(function(error){
                         console.log(error);

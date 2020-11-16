@@ -18,6 +18,7 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "toastr": "^2.1.4",
         "vue": "^2.6.12"
     }
 }
