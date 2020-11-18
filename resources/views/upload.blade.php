@@ -9,7 +9,7 @@
             <label for="upload-file">Upload Question CSV</label>
         <input type="file" name="upload-file" class="form-control">
     </div>
-    <input class="btn btn-success" type="submit" value="Upload Image" name="submit">
+    <input class="btn btn-success" type="submit" value="Upload CSV" name="submit">
     </form>
     </div>
     </div>

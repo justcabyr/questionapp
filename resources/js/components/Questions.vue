@@ -17,7 +17,7 @@
             <input v-model="question.choice_1" type="text" name="choice_1" class="form-control">
         </div>
         <div class="form-group">
-            <label>Correct Choice for Q1</label>
+            <label>Correct Choice</label>
             <input v-model="question.is_correct_choice_1" type="text" name="is_correct_choice_1" class="form-control">
         </div>
         <div class="form-group">
@@ -25,7 +25,7 @@
             <input v-model="question.choice_2" type="text" name="choice_2" class="form-control">
         </div>
         <div class="form-group">
-            <label>Correct Choice for Q2</label>
+            <label>Correct Choice</label>
             <input v-model="question.is_correct_choice_2" type="text" name="is_correct_choice_2" class="form-control">
         </div>
         <div class="form-group">
@@ -33,7 +33,7 @@
             <input v-model="question.choice_3" type="text" name="choice_3" class="form-control">
         </div>
         <div class="form-group">
-            <label>Correct Choice for Q3</label>
+            <label>Correct Choice</label>
             <input v-model="question.is_correct_choice_3" type="text" name="is_correct_choice_3" class="form-control">
         </div>
         <div class="form-group">
@@ -41,7 +41,7 @@
             <input v-model="question.choice_4" type="text" name="choice_4" class="form-control">
         </div>
         <div class="form-group">
-            <label>Correct Choice for Q4</label>
+            <label>Correct Choice</label>
             <input v-model="question.is_correct_choice_4" type="text" name="is_correct_choice_4" class="form-control">
         </div>
         <div class="form-group">
@@ -50,13 +50,48 @@
         </div>
     </form>
     <h1>Questions</h1>
-    <ul class="list-group" v-for="question in list" v-bind:key="question.id">
+
+    <table class="table table-bordered" >
+        <thead>
+            <tr>
+                <th scope="col">Question</th>
+                <th scope="col">Category</th>
+                <th scope="col">1st Choice</th>
+                <th scope="col">Correct Choice</th>
+                <th scope="col">2nd Choice</th>
+                <th scope="col">Correct Choice</th>
+                <th scope="col">3rd Choice</th>
+                <th scope="col">Correct Choice</th>
+                <th scope="col">4th Choice</th>
+                <th scope="col">Correct Choice</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="question in list" v-bind:key="question.id">
+                <td>{{question.question}}</td>
+                <td>{{question.categories}}</td>
+                <td>{{question.choice_1}}</td>
+                <td>{{question.is_correct_choice_1}}</td>
+                <td>{{question.choice_2}}</td>
+                <td>{{question.is_correct_choice_2}}</td>
+                <td>{{question.choice_3}}</td>
+                <td>{{question.is_correct_choice_3}}</td>
+                <td>{{question.choice_4}}</td>
+                <td>
+                    <button @click="showQuestion(question.id)" class="btn btn-default btn-xs">Edit</button>
+                    <button @click="deleteQuestion(question.id)" class="btn btn-danger btn-xs">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- <ul class="list-group" v-for="question in list" v-bind:key="question.id">
         <li class="list-group-item">
             <strong>{{question.question}}</strong> {{question.categories}}
             <button @click="showQuestion(question.id)" class="btn btn-default btn-xs">Edit</button>
             <button @click="deleteQuestion(question.id)" class="btn btn-danger btn-xs">Delete</button>
         </li>
-    </ul>
+    </ul> -->
     </div>
 </template>
 

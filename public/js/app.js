@@ -1970,6 +1970,41 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -19726,381 +19761,401 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _vm._m(0),
-      _vm._v(" "),
-      _vm.edit
-        ? _c("h1", [_vm._v("Update Question")])
-        : _c("h1", [_vm._v("Add Question")]),
+  return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
+    _vm.edit
+      ? _c("h1", [_vm._v("Update Question")])
+      : _c("h1", [_vm._v("Add Question")]),
+    _vm._v(" "),
+    _c(
+      "form",
+      {
+        attrs: { action: "#" },
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            _vm.edit
+              ? _vm.updateQuestion(_vm.question.id)
+              : _vm.createQuestion()
+          }
+        }
+      },
+      [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", [_vm._v("Question")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.question.question,
+                expression: "question.question"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text", name: "question" },
+            domProps: { value: _vm.question.question },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.question, "question", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", [_vm._v("Category")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.question.categories,
+                expression: "question.categories"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text", name: "categories" },
+            domProps: { value: _vm.question.categories },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.question, "categories", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", [_vm._v("1st Choice")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.question.choice_1,
+                expression: "question.choice_1"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text", name: "choice_1" },
+            domProps: { value: _vm.question.choice_1 },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.question, "choice_1", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", [_vm._v("Correct Choice")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.question.is_correct_choice_1,
+                expression: "question.is_correct_choice_1"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text", name: "is_correct_choice_1" },
+            domProps: { value: _vm.question.is_correct_choice_1 },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(
+                  _vm.question,
+                  "is_correct_choice_1",
+                  $event.target.value
+                )
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", [_vm._v("2nd Choice")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.question.choice_2,
+                expression: "question.choice_2"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text", name: "choice_2" },
+            domProps: { value: _vm.question.choice_2 },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.question, "choice_2", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", [_vm._v("Correct Choice")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.question.is_correct_choice_2,
+                expression: "question.is_correct_choice_2"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text", name: "is_correct_choice_2" },
+            domProps: { value: _vm.question.is_correct_choice_2 },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(
+                  _vm.question,
+                  "is_correct_choice_2",
+                  $event.target.value
+                )
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", [_vm._v("3rd Choice")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.question.choice_3,
+                expression: "question.choice_3"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text", name: "choice_3" },
+            domProps: { value: _vm.question.choice_3 },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.question, "choice_3", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", [_vm._v("Correct Choice")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.question.is_correct_choice_3,
+                expression: "question.is_correct_choice_3"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text", name: "is_correct_choice_3" },
+            domProps: { value: _vm.question.is_correct_choice_3 },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(
+                  _vm.question,
+                  "is_correct_choice_3",
+                  $event.target.value
+                )
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", [_vm._v("4th Choice")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.question.choice_4,
+                expression: "question.choice_4"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text", name: "choice_4" },
+            domProps: { value: _vm.question.choice_4 },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.question, "choice_4", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", [_vm._v("Correct Choice")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.question.is_correct_choice_4,
+                expression: "question.is_correct_choice_4"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text", name: "is_correct_choice_4" },
+            domProps: { value: _vm.question.is_correct_choice_4 },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(
+                  _vm.question,
+                  "is_correct_choice_4",
+                  $event.target.value
+                )
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c(
+            "button",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: !_vm.edit,
+                  expression: "!edit"
+                }
+              ],
+              staticClass: "btn btn-primary",
+              attrs: { type: "submit" }
+            },
+            [_vm._v("New Question")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.edit,
+                  expression: "edit"
+                }
+              ],
+              staticClass: "btn btn-primary",
+              attrs: { type: "submit" }
+            },
+            [_vm._v("Update Question")]
+          )
+        ])
+      ]
+    ),
+    _vm._v(" "),
+    _c("h1", [_vm._v("Questions")]),
+    _vm._v(" "),
+    _c("table", { staticClass: "table table-bordered" }, [
+      _vm._m(1),
       _vm._v(" "),
       _c(
-        "form",
-        {
-          attrs: { action: "#" },
-          on: {
-            submit: function($event) {
-              $event.preventDefault()
-              _vm.edit
-                ? _vm.updateQuestion(_vm.question.id)
-                : _vm.createQuestion()
-            }
-          }
-        },
-        [
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", [_vm._v("Question")]),
+        "tbody",
+        _vm._l(_vm.list, function(question) {
+          return _c("tr", { key: question.id }, [
+            _c("td", [_vm._v(_vm._s(question.question))]),
             _vm._v(" "),
-            _c("input", {
-              directives: [
+            _c("td", [_vm._v(_vm._s(question.categories))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(question.choice_1))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(question.is_correct_choice_1))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(question.choice_2))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(question.is_correct_choice_2))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(question.choice_3))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(question.is_correct_choice_3))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(question.choice_4))]),
+            _vm._v(" "),
+            _c("td", [
+              _c(
+                "button",
                 {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.question.question,
-                  expression: "question.question"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text", name: "question" },
-              domProps: { value: _vm.question.question },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
+                  staticClass: "btn btn-default btn-xs",
+                  on: {
+                    click: function($event) {
+                      return _vm.showQuestion(question.id)
+                    }
                   }
-                  _vm.$set(_vm.question, "question", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", [_vm._v("Category")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
+                },
+                [_vm._v("Edit")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
                 {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.question.categories,
-                  expression: "question.categories"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text", name: "categories" },
-              domProps: { value: _vm.question.categories },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
+                  staticClass: "btn btn-danger btn-xs",
+                  on: {
+                    click: function($event) {
+                      return _vm.deleteQuestion(question.id)
+                    }
                   }
-                  _vm.$set(_vm.question, "categories", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", [_vm._v("1st Choice")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.question.choice_1,
-                  expression: "question.choice_1"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text", name: "choice_1" },
-              domProps: { value: _vm.question.choice_1 },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.question, "choice_1", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", [_vm._v("Correct Choice for Q1")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.question.is_correct_choice_1,
-                  expression: "question.is_correct_choice_1"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text", name: "is_correct_choice_1" },
-              domProps: { value: _vm.question.is_correct_choice_1 },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(
-                    _vm.question,
-                    "is_correct_choice_1",
-                    $event.target.value
-                  )
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", [_vm._v("2nd Choice")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.question.choice_2,
-                  expression: "question.choice_2"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text", name: "choice_2" },
-              domProps: { value: _vm.question.choice_2 },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.question, "choice_2", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", [_vm._v("Correct Choice for Q2")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.question.is_correct_choice_2,
-                  expression: "question.is_correct_choice_2"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text", name: "is_correct_choice_2" },
-              domProps: { value: _vm.question.is_correct_choice_2 },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(
-                    _vm.question,
-                    "is_correct_choice_2",
-                    $event.target.value
-                  )
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", [_vm._v("3rd Choice")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.question.choice_3,
-                  expression: "question.choice_3"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text", name: "choice_3" },
-              domProps: { value: _vm.question.choice_3 },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.question, "choice_3", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", [_vm._v("Correct Choice for Q3")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.question.is_correct_choice_3,
-                  expression: "question.is_correct_choice_3"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text", name: "is_correct_choice_3" },
-              domProps: { value: _vm.question.is_correct_choice_3 },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(
-                    _vm.question,
-                    "is_correct_choice_3",
-                    $event.target.value
-                  )
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", [_vm._v("4th Choice")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.question.choice_4,
-                  expression: "question.choice_4"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text", name: "choice_4" },
-              domProps: { value: _vm.question.choice_4 },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.question, "choice_4", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", [_vm._v("Correct Choice for Q4")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.question.is_correct_choice_4,
-                  expression: "question.is_correct_choice_4"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text", name: "is_correct_choice_4" },
-              domProps: { value: _vm.question.is_correct_choice_4 },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(
-                    _vm.question,
-                    "is_correct_choice_4",
-                    $event.target.value
-                  )
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c(
-              "button",
-              {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: !_vm.edit,
-                    expression: "!edit"
-                  }
-                ],
-                staticClass: "btn btn-primary",
-                attrs: { type: "submit" }
-              },
-              [_vm._v("New Question")]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.edit,
-                    expression: "edit"
-                  }
-                ],
-                staticClass: "btn btn-primary",
-                attrs: { type: "submit" }
-              },
-              [_vm._v("Update Question")]
-            )
+                },
+                [_vm._v("Delete")]
+              )
+            ])
           ])
-        ]
-      ),
-      _vm._v(" "),
-      _c("h1", [_vm._v("Questions")]),
-      _vm._v(" "),
-      _vm._l(_vm.list, function(question) {
-        return _c("ul", { key: question.id, staticClass: "list-group" }, [
-          _c("li", { staticClass: "list-group-item" }, [
-            _c("strong", [_vm._v(_vm._s(question.question))]),
-            _vm._v(" " + _vm._s(question.categories) + "\n        "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-default btn-xs",
-                on: {
-                  click: function($event) {
-                    return _vm.showQuestion(question.id)
-                  }
-                }
-              },
-              [_vm._v("Edit")]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-danger btn-xs",
-                on: {
-                  click: function($event) {
-                    return _vm.deleteQuestion(question.id)
-                  }
-                }
-              },
-              [_vm._v("Delete")]
-            )
-          ])
-        ])
-      })
-    ],
-    2
-  )
+        }),
+        0
+      )
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -20113,6 +20168,34 @@ var staticRenderFns = [
         { staticClass: "btn btn-success mt-2", attrs: { href: "/showform" } },
         [_vm._v("Upload Questions")]
       )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Question")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Category")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("1st Choice")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Correct Choice")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("2nd Choice")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Correct Choice")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("3rd Choice")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Correct Choice")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("4th Choice")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Correct Choice")])
+      ])
     ])
   }
 ]

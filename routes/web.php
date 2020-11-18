@@ -17,14 +17,16 @@ use App\Http\Controllers\LoginController;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    return redirect('dashboard');
 });
 
-Route::post('/login', [LoginController::class, 'authenticateAdmin']);
-Route::get('/dashboard', function () {
-    return view('welcome');
+Route::middleware('auth:web')->group( function(){
+    
+    Route::get('/dashboard', function () {
+        return view('welcome');
+    });
+    
+    Route::post('/upload', [ExcelUploadController::class, 'store']);
+    Route::get('/showform', [ExcelUploadController::class, 'showForm']);
 });
-
-Route::post('/upload', [ExcelUploadController::class, 'store']);
-Route::get('/showform', [ExcelUploadController::class, 'showForm']);
-// Route::post('/login', [, ])
+Auth::routes();
