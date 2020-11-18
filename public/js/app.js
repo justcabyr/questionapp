@@ -2021,7 +2021,6 @@ __webpack_require__.r(__webpack_exports__);
         self.question.is_correct_choice_4 = '';
         self.edit = false;
         self.fetchQuestionList();
-        toastr.success('Question created.', 'Success!');
       })["catch"](function (error) {
         console.log(error);
       });

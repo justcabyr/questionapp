@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use JWTAuth;
 use App\Models\Question;
 use Validator;
 
@@ -52,7 +53,6 @@ class QuestionsController extends Controller
         $question->is_correct_choice_3 = $request->input('is_correct_choice_3');
         $question->choice_4 = $request->input('choice_4');
         $question->is_correct_choice_4 = $request->input('is_correct_choice_4');
-        $question->save();
 
         if($question->save()){
             return response()->json([
@@ -65,6 +65,10 @@ class QuestionsController extends Controller
             'status'=> 400,
             'message'=> 'An error occured.'
         ]);
+
+        $token = JWTAuth::fromQuestion($question);
+
+        return response()->json(compact('question','token'),201);
 
     }
 
@@ -111,7 +115,6 @@ class QuestionsController extends Controller
         $question->is_correct_choice_3 = $request->input('is_correct_choice_3');
         $question->choice_4 = $request->input('choice_4');
         $question->is_correct_choice_4 = $request->input('is_correct_choice_4');
-        $question->save();
 
         if($question->save()){
             return response()->json([
@@ -129,6 +132,16 @@ class QuestionsController extends Controller
     public function destroy($id)
     {
         $question = Question::find($id);
-        $question->delete();
+
+        if($question->delete()){
+            return response()->json([
+                'status' => 200,
+                'message' => 'Record deleted'
+            ]);
+        }
+        return response()->json([
+            'status'=> 400,
+            'message'=> 'An error occured.'
+        ]);
     }
 }

@@ -112,7 +112,6 @@
                         self.question.is_correct_choice_4 = '';
                         self.edit = false;
                         self.fetchQuestionList();
-                        toastr.success('Question created.', 'Success!')
                     })
                     .catch(function(error) {
                         console.log(error);
@@ -155,6 +154,7 @@
                         self.question.is_correct_choice_4 = '';
                         self.edit = false;
                         self.fetchQuestionList();
+
                     })
                     .catch(function(error) {
                         console.log(error);
@@ -165,6 +165,7 @@
                     .then(function(response){
                         // windows.location - refresh
                         self.fetchQuestionList();
+
                     })
                     .catch(function(error){
                         console.log(error);
