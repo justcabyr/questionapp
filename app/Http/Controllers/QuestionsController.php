@@ -144,4 +144,214 @@ class QuestionsController extends Controller
             'message'=> 'An error occured.'
         ]);
     }
+
+
+    // Consuming endpoint
+
+    public function createData(Request $request)
+	{
+        $validator = Validator::make($request->all(),
+        [
+        'question' => 'required',
+        'categories' => 'required',
+        'choice_1' => 'required',
+        'is_correct_choice_1' => 'required',
+        'choice_2' => 'nullable',
+        'is_correct_choice_2' => 'required',
+        'choice_3' => 'nullable',
+        'is_correct_choice_3' => 'required',
+        'choice_4' => 'nullable',
+        'is_correct_choice_4' => 'required',
+        ]);
+
+        if($validator->fails()){
+            return response()->json($validator->errors());
+        }
+
+       
+
+		$client = new Client([
+			'headers' => [
+				"Content-Type" => "application/json",
+				"Authorization" => "Bearer ".Auth::User()->access_token
+			],
+		]);
+
+		try{
+			$response = $client->request($method, config('app.api_base_url').'store',
+				[
+				'json' => [
+                  
+                    'question' => $request->input('question'),
+                    'categories' => $request->input('categories'),
+                    'choice_1' => $request->input('choice_1'),
+                    'is_correct_choice_1' => $request->input('is_correct_choice_1'),
+                    'choice_2' => $request->input('choice_2'),
+                    'is_correct_choice_2' => $request->input('is_correct_choice_2'),
+                    'choice_3' => $request->input('choice_3'),
+                    'is_correct_choice_3' => $request->input('is_correct_choice_3'),
+                    'choice_4' => $request->input('choice_4'),
+                    'is_correct_choice_4' => $request->input('is_correct_choice_4'),
+                ]
+				]
+			);
+			$statusCode = $response->getStatusCode();
+			$body = $response->getBody()->getContents();
+			$result = json_decode($body);
+
+		} catch(\Exception $e){
+			// Auth::logout();
+			// return redirect('')->with('error', 'Token is Expired');
+		}
+        if ($result->status == 200) {
+            return  view('welcome');
+        }
+
+        return redirect()->back()->with('error', 'Oops! Something went wrong');
+
+	}
+
+	public function updateData($method, $body, $url)
+	{
+		$client = new Client([
+			'headers' => [
+				"Content-Type" => "application/json",
+				"Authorization" => "Bearer ".Auth::User()->access_token
+			],
+		]);
+
+		try{
+			$response = $client->request($method, config('app.api_base_url').$url,
+				[
+				'json' => $body
+				]
+			);
+			$statusCode = $response->getStatusCode();
+			$body = $response->getBody()->getContents();
+			$result = json_decode($body);
+
+		} catch(\Exception $e) {
+			
+			Auth::logout();
+			return redirect('security/login')->with('error', 'Token is Expired');
+        }
+        
+        if ($result->status == 200) {
+            return  view('welcome');
+        }
+
+        return redirect()->back()->with('error', 'Oops! Something went wrong');
+
+		
+	}
+
+	public function listData($method, $body, $url)
+	{
+		$client = new Client([
+			'headers' => [
+				"Content-Type" => "application/json",
+				"Authorization" => "Bearer ".Auth::User()->access_token
+			],
+		]);
+
+		try{
+			$response = $client->request($method, config('app.api_base_url').$url,
+				[
+				'json' => $body
+				]
+			);
+			$statusCode = $response->getStatusCode();
+			$body = $response->getBody()->getContents();
+			$result = json_decode($body);
+			
+		} catch(\Exception $e) {
+			Auth::logout();
+		
+			return redirect('security/login')->with('error', 'Token is Expired');
+			
+		}
+		
+		return $result;
+	}
+
+	public function findById($method, $body, $url)
+	{
+		$client = new Client([
+			'headers' => [
+				"Content-Type" => "application/json",
+				"Authorization" => "Bearer ".Auth::User()->access_token
+			],
+		]);
+
+		try{
+			$response = $client->request($method, config('app.api_base_url').$url,
+				[
+				'json' => $body
+				]
+			);
+			$statusCode = $response->getStatusCode();
+			$body = $response->getBody()->getContents();
+			$result = json_decode($body);
+
+		} catch(\Exception $e) {
+			Auth::logout();
+			return redirect('security/login')->with('error', 'Token is Expired');
+		}
+		
+		return $result;
+    }
+    
+    public function deleteById($method, $body, $url)
+    {
+		$client = new Client([
+			'headers' => [
+				"Content-Type" => "application/json",
+				"Authorization" => "Bearer ".Auth::User()->access_token
+			],
+		]);
+
+		try{
+			$response = $client->request($method, config('app.api_base_url').$url,
+				[
+				'json' => $body
+				]
+			);
+			$statusCode = $response->getStatusCode();
+			$body = $response->getBody()->getContents();
+			$result = json_decode($body);
+
+		} catch(\Exception $e) {
+			Auth::logout();
+			return redirect('security/login')->with('error', 'Token is Expired');
+		}
+		
+		return $result;
+	}
+	
+	public function viewData($method, $body, $url)
+	{
+		$client = new Client([
+			'headers' => [
+				"Content-Type" => "application/json",
+				"Authorization" => "Bearer ".Auth::User()->access_token
+			],
+		]);
+		
+		try{
+			$response = $client->request($method, config('app.api_base_url').$url,
+				[
+				'json' => $body
+				]
+        	);
+			$statusCode = $response->getStatusCode();
+			$body = $response->getBody()->getContents();
+			
+			$result = json_decode($body);
+		
+		} catch(\Exception $e) {
+			Auth::logout();
+			return redirect('security/login')->with('error', 'Token is Expired');
+		}	
+		return $result;
+    }
 }

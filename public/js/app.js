@@ -1969,6 +1969,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -19728,6 +19729,8 @@ var render = function() {
   return _c(
     "div",
     [
+      _vm._m(0),
+      _vm._v(" "),
       _vm.edit
         ? _c("h1", [_vm._v("Update Question")])
         : _c("h1", [_vm._v("Add Question")]),
@@ -20099,7 +20102,20 @@ var render = function() {
     2
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [
+      _c(
+        "a",
+        { staticClass: "btn btn-success mt-2", attrs: { href: "/showform" } },
+        [_vm._v("Upload Questions")]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 

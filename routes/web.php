@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ExcelUploadController;
+use App\Http\Controllers\LoginController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +17,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    return view('auth.login');
+});
+
+Route::post('/login', [LoginController::class, 'authenticateAdmin']);
+Route::get('/dashboard', function () {
     return view('welcome');
 });
+
+Route::post('/upload', [ExcelUploadController::class, 'store']);
+Route::get('/showform', [ExcelUploadController::class, 'showForm']);
+// Route::post('/login', [, ])

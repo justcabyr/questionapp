@@ -8,8 +8,10 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use \Illuminate\Http\Request;
+use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+
 
 class LoginController extends Controller
 {
@@ -24,7 +26,9 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
+    use AuthenticatesUsers{
+        logout as performLogout;
+    }
 
     /**
      * Where to redirect users after login.
@@ -76,4 +80,54 @@ class LoginController extends Controller
 
         return response()->json(compact('token', 'user'));
     }
+
+
+    // Consuming endpoint
+    public function authenticateAdmin(Request $request)
+    {
+        $validator = Validator::make($request->all(),[
+             'email' => 'required',
+             'password' => 'required'
+        ]);
+
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(), 400);
+        }
+ 
+        $client = new Client();
+        $response = $client->request('POST', config('app.api_base_url').'login',
+            [
+               'form_params' => [
+                   'email' => $request->email,
+                   'password' => $request->password
+               ] 
+            ]
+        );
+        $statusCode = $response->getStatusCode();
+        $body = $response->getBody()->getContents();
+        $result = json_decode($body);
+         
+        $user = User::where('email',$result->user->email)->first();
+
+        $credentials = $request->only('email', 'password');
+
+        $user = User::updateOrCreate(['email' =>  $result->user->email],
+        [  
+            'user_id' =>  $result->user->id,
+            'name' =>  $result->user->name,
+            'access_token' =>  $result->token,
+            'password' =>   bcrypt($request->get('password')),
+          
+        ]);
+
+        Auth::attempt($credentials);
+
+        return redirect(url('/dashboard'));
+    }
+    public function logout(Request $request)
+    {
+        $this->performLogout($request);
+        return view('auth.login');
+    }
+
 }

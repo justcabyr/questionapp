@@ -1,5 +1,6 @@
 <template>
     <div>
+    <p><a class="btn btn-success mt-2" href="/showform">Upload Questions</a></p>
     <h1 v-if="edit">Update Question</h1>
     <h1 v-else>Add Question</h1>
     <form action="#" @submit.prevent="edit ? updateQuestion(question.id) : createQuestion()">
