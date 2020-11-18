@@ -21,9 +21,7 @@
 * run `npm install`
 
 ### API & Routes ###
-Use the [Postman Collection link](https://www.getpostman.com/collections/d2bf711b986e1ea30cc7) to access the applciation apis and routes
-
-* Home page
+Use the [Postman Collection link](https://www.getpostman.com/collections/d2bf711b986e1ea30cc7) to access the application APIs and routes
 
 ### Include ###
 
