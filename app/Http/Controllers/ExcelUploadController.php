@@ -94,8 +94,8 @@ class ExcelUploadController extends Controller
            $question->icon_url_4 = $icon_url_4;
         //    dd($question);
            $question->save();
+           return view('welcome');  
         }
-        return view('welcome');  
         
     }
 }
